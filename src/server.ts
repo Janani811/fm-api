@@ -1,16 +1,11 @@
-import mongoose from "mongoose"
-import app from "./index"
-import config from "./config"
+import mongoose from 'mongoose';
+import config from './config';
 
-async function main() {
+(async function dbInitialization() {
   try {
-    await mongoose.connect(config.db_url as string)
-    app.listen(config.port, () => {
-      console.log(`Example app listening on port ${config.port}`)
-    })
+    await mongoose.connect(config.db_url as string);
+    console.log('🚀 ~ DB Connection Successful !!');
   } catch (err) {
-    console.log(err)
+    console.log(err);
   }
-}
-
-main()
+})();

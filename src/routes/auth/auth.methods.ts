@@ -1,19 +1,19 @@
-import {Request} from "express"
-import {validationResult, ErrorFormatter} from "express-validator"
+import { Request } from 'express';
+import { validationResult } from 'express-validator';
 
 const validate = async (req: Request) => {
-  const errors = validationResult(req)
+  const errors = validationResult(req);
   if (!errors.isEmpty()) {
-    let validationError = []
-    for (let error of errors.array()) {
+    const validationError = [];
+    for (const error of errors.array()) {
       validationError.push({
-        message: error.msg,
+        message: error.msg
         // field: error.path,
-      })
+      });
     }
-    return validationError
+    return validationError;
   }
-  return true
-}
+  return true;
+};
 
-export {validate}
+export { validate };
