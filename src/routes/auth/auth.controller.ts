@@ -19,7 +19,6 @@ const login = async (req: Request, res: Response) => {
     const user = await User.findOne({
       us_email: req.body.us_email
     });
-
     // if not, send a message
     if (!user) {
       return res.status(400).json({
@@ -58,8 +57,8 @@ const login = async (req: Request, res: Response) => {
     return res.status(200).send({
       status: true,
       message: 'Successfully logged in',
-      jwtToken
-      // user,
+      jwtToken,
+      user
     });
   } catch (error) {
     return res.status(401).json({
