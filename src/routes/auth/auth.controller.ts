@@ -41,7 +41,7 @@ const login = async (req: Request, res: Response) => {
     delete user.us_password_salt;
 
     // create jwt token with user data and secret key
-    const jwtToken = authHelper.createJWTToken(user);
+    const jwtToken = authHelper.createJWTToken({ userId: user._id.toString() });
 
     //save token in cookie
     res.cookie('authcookie', jwtToken, {
@@ -123,4 +123,24 @@ const signUp = async (req: Request, res: Response) => {
   }
 };
 
-export default { login, signUp };
+function logout(req: Request, res: Response) {
+  // check if authcookie and authenticatedCookie is there
+  if (req.cookies['authcookie'] && req.cookies['authenticatedCookie']) {
+    res.clearCookie('authcookie');
+    res.clearCookie('authenticatedCookie');
+    res.status(200).json({ message: 'You have logged out' });
+  } // else send a message as Invalid cookie
+  else {
+    res.status(401).json({ error: 'Invalid Cookie' });
+  }
+}
+
+async function getMe(req: Request, res: Response) {
+  try {
+    return res.status(200).json({ user: req.user });
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export default { login, signUp, getMe, logout };

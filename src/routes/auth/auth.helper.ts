@@ -2,7 +2,6 @@ import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 
 import config from '../../config/index';
-import { IUser } from '../users/users.model';
 
 export default {
   // compare user password with hashed password from user record using bcrypt
@@ -31,7 +30,7 @@ export default {
   },
 
   // create jwt token using JWTWebToken
-  createJWTToken: (user: IUser) => {
-    return jwt.sign({ ...user }, config.jwt_secret_key);
+  createJWTToken: (userId: { userId: string }) => {
+    return jwt.sign(userId, config.jwt_secret_key);
   }
 };
