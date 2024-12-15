@@ -11,7 +11,6 @@ const { Strategy: JwtStrategy } = passportJWT;
 // set cookie to jwt
 const cookieExtractor = (req: any) => {
   let jwt = null;
-  //   console.log(req);
   if (req && req.cookies) {
     jwt = req.cookies['authcookie'];
   }

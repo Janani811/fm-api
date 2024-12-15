@@ -6,6 +6,6 @@ import config from './config';
     await mongoose.connect(config.db_url as string);
     console.log('🚀 ~ DB Connection Successful !!');
   } catch (err) {
-    console.log(err);
+    console.log('dbInitialization', err);
   }
 })();

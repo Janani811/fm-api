@@ -32,7 +32,7 @@ const login = async (req: Request, res: Response) => {
     // check if the user account is activated or not, if not send message
     if (!user.us_is_active) {
       return res.status(403).json({
-        message: 'Your account is not active.'
+        message: 'Your account is not an active'
       });
     }
 
@@ -140,6 +140,7 @@ async function getMe(req: Request, res: Response) {
     return res.status(200).json({ user: req.user });
   } catch (error) {
     console.log(error);
+    return res.status(500).json({ error: 'Invalid Cookie' });
   }
 }
 
