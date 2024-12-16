@@ -1,3 +1,4 @@
+import 'reflect-metadata';
 import express, { Request, Response } from 'express';
 import cors from 'cors';
 import swaggerUi from 'swagger-ui-express';
@@ -5,11 +6,13 @@ import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 import bodyParser from 'body-parser';
 
-import './server';
+import './server'; // DB initialisation
 import '.';
 import config from './config';
 import setInitialRoutes from './routes/index';
 import { swaggerSpec } from './swagger';
+
+import { graphqlServer } from './graphql-server';
 
 const app = express();
 
@@ -33,6 +36,10 @@ app.use(cors({ credentials: true, origin: config.front_end_url }));
 setInitialRoutes(app);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec, { explorer: true }));
 // app.use(setInitialRoutes);
+
+//  Graphql server initial setup
+graphqlServer();
+
 app.get('/', (req: Request, res: Response) => {
   res.send('Hello from setup file');
 });
