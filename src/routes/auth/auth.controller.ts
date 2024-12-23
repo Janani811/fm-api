@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 
-import { User } from '../users/users.model';
+import { User } from '../../models/users.model';
 import authHelper from './auth.helper';
 import { validate } from './auth.methods';
 

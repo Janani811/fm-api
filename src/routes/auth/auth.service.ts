@@ -2,7 +2,7 @@
 import passport from 'passport';
 import passportJWT from 'passport-jwt';
 
-import { IUser, User } from '../users/users.model';
+import { IUser, User } from '../../models/users.model';
 import config from '../../config/index';
 import { Request, Response } from 'express';
 

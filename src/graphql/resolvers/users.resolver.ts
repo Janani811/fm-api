@@ -1,6 +1,6 @@
 import { Resolver, Query, Mutation, Arg, Args } from 'type-graphql';
 
-import { User } from '../../routes/users/users.model';
+import { User } from '../../models/users.model';
 
 import { CreateUserInput, UpdateUserInput, IUser } from '../types/user';
 
