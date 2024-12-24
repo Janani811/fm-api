@@ -23,9 +23,15 @@
  *                   type: string
  *                 us_password:
  *                   type: string
+ *       security: []
  *       responses:
  *         200:
  *           description: Login successful
+ *           headers:
+ *              Set-Cookie:
+ *                 schema:
+ *                   type: string
+ *                   example: authcookie=abcde12345; Path=/; HttpOnly
  *         401:
  *           description: Unauthorized
  *
@@ -35,6 +41,7 @@
  *         - Authentication
  *       summary: Register a user
  *       description: Create a new user
+ *       security: []
  *       requestBody:
  *         required: true
  *         content:

@@ -12,7 +12,7 @@ import config from './config';
 import setInitialRoutes from './routes/index';
 import { swaggerSpec } from './swagger';
 
-import { graphqlServer } from './graphql-server';
+// import { graphqlServer } from './graphql-server';
 
 const app = express();
 
@@ -38,7 +38,7 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec, { explorer: t
 // app.use(setInitialRoutes);
 
 //  Graphql server initial setup
-graphqlServer();
+// graphqlServer();
 
 app.get('/', (req: Request, res: Response) => {
   res.send('Hello from setup file');

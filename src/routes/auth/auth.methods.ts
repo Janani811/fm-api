@@ -6,14 +6,17 @@ const validate = async (req: Request) => {
   if (!errors.isEmpty()) {
     const validationError = [];
     for (const error of errors.array()) {
-      validationError.push({
+      const customError = {
         message: error.msg
-        // field: error.path,
-      });
+      };
+      if (error.type === 'field') {
+        customError['field'] = error.path;
+      }
+      validationError.push(customError);
     }
     return validationError;
   }
-  return true;
+  return [];
 };
 
 export { validate };

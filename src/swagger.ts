@@ -1,14 +1,24 @@
 import swaggerJSDoc from 'swagger-jsdoc';
 
 // Define the Swagger options
-const options = {
-  definition: {
+const options: swaggerJSDoc.Options = {
+  swaggerDefinition: {
     openapi: '3.0.1',
     info: {
-      title: 'REST API for Swagger Documentation',
+      title: 'FixMate Api for Swagger Documentation',
       version: '1.0.0',
       description:
         'This API provides various routes for user authentication, registration, and more.'
+    },
+    basePath: '/',
+    components: {
+      securitySchemes: {
+        cookieAuth: {
+          type: 'token',
+          in: 'cookie',
+          name: 'authcookie'
+        }
+      }
     },
     servers: [
       {
